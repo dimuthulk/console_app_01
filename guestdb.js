@@ -21,8 +21,21 @@ const addGuest = (name,address,contact_no,visit_date) =>{
     console.log(chalk.green("Data Saved"));
 }
 
-const updateGuest = (id) => {
-    console.log(chalk.red("Update: ",id));
+const updateGuest = (id,name,address,contact_no,visit_date) => {
+    const guests = loadGuest();
+    const guestIndex = guests.findIndex((guest) => guest.id === id);
+    if(guestIndex === -1) {
+        console.log(chalk.red("Guest not found"));
+        return;
+    } else{
+        guests[guestIndex].name = name;
+        guests[guestIndex].address = address;
+        guests[guestIndex].contact_no = contact_no;
+        guests[guestIndex].visit_date = visit_date;
+        saveGuest(guests);
+        console.log(chalk.green(id," Record Updated: "));
+    }
+ 
 }
 
 const deleteGuest = (id) => {
