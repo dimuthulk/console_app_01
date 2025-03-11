@@ -3,7 +3,7 @@ import db from './guestdb.js';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
-console.log(chalk.bgYellow("No Error!"));
+// console.log(chalk.bgYellow("No Error!"));
 // db.addGuest();
 // db.updateGuest();
 
@@ -48,7 +48,6 @@ yargs(hideBin(process.argv))
             },
             name: {
                 describe: 'Guest name',
-                demandOption: true,
                 type: 'string'
             },
             address: {
