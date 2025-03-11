@@ -22,18 +22,24 @@ const addGuest = (name,address,contact_no,visit_date) =>{
 }
 
 const updateGuest = (id) => {
-    console.log(chalk.yellow("Update: ",id));
+    console.log(chalk.red("Update: ",id));
 }
 
 const deleteGuest = (id) => {
-    console.log(chalk.magenta("Delete: ",id));
+    const guests = loadGuest();
+    const newGuests = guests.filter((guest) => guest.id !== id);
+    if(guests.length === newGuests.length) {
+        console.log(chalk.red("Guest not found"));
+        return;
+    } else {
+        saveGuest(newGuests);
+        console.log(chalk.red("Delete: ",id));
+    }
 }
 
 const readGuest = (id) => {
     const guests = loadGuest();
-    const guest = guests.find((guest) => {
-        return guest.id === id});
-
+    const guest = guests.find((guest) =>guest.id === id);
         if(!guest) {
             console.log(chalk.red("Guest not found"));
             return;
